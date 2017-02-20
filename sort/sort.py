@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import random
-from insertion_sort import *
+from bubble_sort import *
 import time
 
 def init(n):
@@ -18,6 +18,7 @@ def check(lst):
 
 def main(n=100):
     lst = init(n)
+#    print lst
     start_time = time.time()
     sort_it(lst)
     end_time = time.time()

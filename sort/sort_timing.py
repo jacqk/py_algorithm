@@ -5,7 +5,7 @@ import sort
 import matplotlib.pyplot as plt
 
 def init(n):
-    test = [2 ** i for i in range(8)]
+    test = [2 ** i for i in range(n)]
     return test
 
 def test_sample(test):
@@ -23,9 +23,10 @@ def draw(x, y):
     plt.ylabel('time')
     plt.show()
 
-def main(n=8):
+def main(n=10):
     n, times = test_sample(init(n))
-    draw(n, times)
+    return n, times
 
 if __name__ == '__main__':
-    main()
+    n, times = main()
+    draw(n, times)
