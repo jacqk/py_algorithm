@@ -41,9 +41,9 @@ def find_max_subarray(lst, low, high):
         elif cross_sum >= left_sum and cross_sum >= right_sum:
             return cross_low, cross_high, cross_sum
 
-def find_maximum_subarray(lst):
-    print find_max_subarray(lst, 0, len(lst) - 1)
+def find(lst):
+    return find_max_subarray(lst, 0, len(lst) - 1)
 
 if __name__ == '__main__':
     test_lst = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -6, -22, 15, -4, 7]
-    find_maximum_subarray(test_lst)
+    find(test_lst)
