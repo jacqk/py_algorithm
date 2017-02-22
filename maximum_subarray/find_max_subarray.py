@@ -3,7 +3,7 @@
 
 import time
 import random
-from brute_force import *
+from d_and_q import *
 
 def init(n):
     lst = range(-n/2, n/2)
@@ -13,6 +13,7 @@ def init(n):
 def check():
     test_lst = [13, -3, -25, 20, -3, -16, -23, 18, 20, -7, 12, -6, -22, 15, -4, 7]
     low, high, s = find(test_lst)
+    print low, high, s
     if low == 7 and high == 10 and s == 43:
         return True
     else:
