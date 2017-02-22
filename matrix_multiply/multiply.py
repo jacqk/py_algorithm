@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import numpy as np
+from square_multiply import *
+import time
+
+
+def init(n):
+    return np.random.random_integers(1, 100, [n, n])
+
+
+def main(n):
+    time_cost, time_st, boolean = test(n)
+    print "%dx%d finished in %.6f second(%.6f standard), %s" % (n, n, time_cost, time_st, boolean)
+    return n, time_cost, time_st
+
+
+def test(n):
+    A = init(n)
+    B = init(n)
+    start_time = time.time()
+    st_answer = np.matmul(A, B)
+    start_time_1 = time.time()
+    result = multiply(init(n), init(n))
+    finish_time = time.time()
+    print st_answer
+    print result
+    return (finish_time - start_time_1, start_time_1 - start_time, st_answer == result)
+
+
+if __name__ == '__main__':
+    main(n=2)
