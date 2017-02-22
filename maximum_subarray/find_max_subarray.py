@@ -3,7 +3,7 @@
 
 import time
 import random
-from d_and_q import *
+from brute_force import *
 
 def init(n):
     lst = range(-n/2, n/2)
