@@ -11,8 +11,11 @@ def init(n):
 
 
 def main(n):
-    time_cost, time_st, boolean = test(n)
-    print "%dx%d finished in %.6f second(%.6f standard), %s" % (n, n, time_cost, time_st, boolean)
+    var = np.array([0, 0])
+    for i in range(80):
+        time_cost, time_st, boolean = test(n)
+        var = (var * i + np.array([time_cost, time_st])) / (i + 1)
+    print "%dx%d finished in %.6f second(%.6f standard), %s" % (n, n, var[0], var[1], boolean)
     return n, time_cost, time_st
 
 
@@ -22,12 +25,17 @@ def test(n):
     start_time = time.time()
     st_answer = np.matmul(A, B)
     start_time_1 = time.time()
-    result = multiply(init(n), init(n))
+    result = multiply(A, B)
     finish_time = time.time()
-    print st_answer
-    print result
-    return (finish_time - start_time_1, start_time_1 - start_time, st_answer == result)
+    boolean = True
+    for item in (st_answer == result).flatten():
+        if item == False:
+            boolean = False
+            break
+#    print st_answer
+#    print result
+    return (finish_time - start_time_1, start_time_1 - start_time, boolean)
 
 
 if __name__ == '__main__':
-    main(n=2)
+    main(n=4)
