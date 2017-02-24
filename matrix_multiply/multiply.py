@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import numpy as np
-from square_multiply import *
+from square_multiply_recursive import *
 import time
 
 
@@ -38,4 +38,4 @@ def test(n):
 
 
 if __name__ == '__main__':
-    main(n=4)
+    main(n=2)

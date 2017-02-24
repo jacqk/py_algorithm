@@ -5,7 +5,7 @@ import multiply
 import matplotlib.pyplot as plt
 
 def init(n):
-    return [i for i in range(n)]
+    return [2 ** i for i in range(n)]
 
 def test(n):
     numbers = []
@@ -32,4 +32,4 @@ def main(n):
 
 
 if __name__ == '__main__':
-    main(n=30)
+    main(n=5)
