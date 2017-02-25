@@ -8,14 +8,16 @@ def multiply(A, B):
 
     if n == 1:
         return np.array([[A[0, 0] * B[0, 0]]])
+    elif n == 2:
+        return np.matmul(A, B)
     else:
         p_split = n / 2
         A_11 = A[:p_split, :p_split]
-        A_12 = A[:p_split:,p_split:]
+        A_12 = A[:p_split, p_split:]
         A_21 = A[p_split:, :p_split]
         A_22 = A[p_split:, p_split:]
         B_11 = B[:p_split, :p_split]
-        B_12 = B[:p_split:, p_split:]
+        B_12 = B[:p_split, p_split:]
         B_21 = B[p_split:, :p_split]
         B_22 = B[p_split:, p_split:]
         c_11 = multiply(A_11, B_11) + multiply(A_12, B_21)
