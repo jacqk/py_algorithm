@@ -71,6 +71,15 @@ class BST(object):
             else:
                 return self.key
 
+        def select(self, rank):
+            if self.left.size() + 1 > rank:
+                return self.left.select(rank)
+            elif self.left.size() + 1 < rank:
+                return self.right.select(rank - self.left.size() - 1)
+            else:
+                return self.key, self.val
+
+
 
 
     def __init__(self):
@@ -101,6 +110,13 @@ class BST(object):
             return None
         return self.root.floor(key)
 
+    def select(self, rank):
+        if self.root.key == None:
+            return None
+        if rank > self.root.n or rank < 0:
+            return None
+        return self.root.select(rank)
+
 def main():
     import numpy as np
 #    sample = np.arange(100)
@@ -114,6 +130,9 @@ def main():
     print binary_search_tree.min(), "  ", min(sample)
     print binary_search_tree.max(), "  ", max(sample)
     print binary_search_tree.floor(50)
+    sorted_set = sorted(list(set(sample)))
+    print binary_search_tree.select(5), "  ", sorted_set[4]
+    print binary_search_tree.select(10), "  ", sorted_set[9]
+    print binary_search_tree.select(20), "  ", sorted_set[19]
 if __name__ == "__main__":
     main()
-
