@@ -38,4 +38,4 @@ def test(n):
 
 
 if __name__ == '__main__':
-    main(n=2)
+    main(n=128)

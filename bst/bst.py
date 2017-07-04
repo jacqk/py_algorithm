@@ -48,13 +48,13 @@ class BST(object):
                 return
         def min(self):
             if self.left.key == None:
-                return self.key
+                return self
             else:
                 return self.left.min()
 
         def max(self):
             if self.right.key == None:
-                return self.key
+                return self
             else:
                 return self.right.max()
 
@@ -78,9 +78,51 @@ class BST(object):
                 return self.right.select(rank - self.left.size() - 1)
             else:
                 return self.key, self.val
+        def rank(self, key):
+            if self.key == None:
+                return 0
+            elif self.key == key:
+                return self.left.size() + 1
+            elif self.key > key:
+                return self.left.rank(key)
+            elif self.key < key:
+                return self.right.rank(key) + self.left.size() + 1
 
+        def deleteMin(self):
+            if self.left.key == None:
+                return self.right
+            else:
+                self.left = self.left.deleteMin()
+                self.n = self.left.size() + self.right.size() + 1
+                return self
 
+        def deleteMax(self):
+            if self.right.key == None:
+                return self.left
+            else:
+                self.right = self.right.deleteMax()
+                self.n = self.left.size() + self.right.size() + 1
+                return self
 
+        def delete(self, key):
+            if self.key == None:
+                return self
+            elif self.key > key:
+                self.left = self.left.delete(key)
+            elif self.key < key:
+                self.right = self.right.delete(key)
+            elif self.key == key:
+                if self.left.key == None:
+                    return self.right
+                elif self.right.key == None:
+                    return self.left
+                else:
+                    tmp = self
+                    self = tmp.right.min()
+                    self.left = tmp.left
+                    self.right = tmp.right.deleteMin
+            self.n = self.left.size() + self.right.size() + 1
+            return self
 
     def __init__(self):
         self.root = self.Node(None, None, 0)
@@ -111,11 +153,25 @@ class BST(object):
         return self.root.floor(key)
 
     def select(self, rank):
-        if self.root.key == None:
-            return None
         if rank > self.root.n or rank < 0:
             return None
         return self.root.select(rank)
+    def rank(self, key):
+        if self.root.get(key) == None:
+            return None
+        return self.root.rank(key)
+    def deleteMin(self):
+        if self.root.size() < 1:
+            return
+        return self.root.deleteMin()
+    def deleteMax(self):
+        if self.root.size() < 1:
+            return
+        return self.root.deleteMax()
+    def delete(self, key):
+        if self.size == 0:
+            return
+        self.root.delete(key)
 
 def main():
     import numpy as np
@@ -134,5 +190,18 @@ def main():
     print binary_search_tree.select(5), "  ", sorted_set[4]
     print binary_search_tree.select(10), "  ", sorted_set[9]
     print binary_search_tree.select(20), "  ", sorted_set[19]
+    for item in sorted_set:
+        print binary_search_tree.rank(item)
+    print binary_search_tree.rank(101)
+    print binary_search_tree.rank(-1)
+    print binary_search_tree.min()
+    binary_search_tree.deleteMin()
+    print binary_search_tree.min()
+    print binary_search_tree.max()
+    binary_search_tree.deleteMax()
+    print binary_search_tree.max()
+    binary_search_tree.delete(5)
+    binary_search_tree.delete(10)
+    binary_search_tree.delete(20)
 if __name__ == "__main__":
     main()
