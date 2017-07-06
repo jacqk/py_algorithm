@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import random
-from bubble_sort import *
+from quick_sort import *
 import time
 
 def init(n):

@@ -44,6 +44,10 @@ class Heap(object):
             self.heap_size -= 1
             self.max_heapify(0)
 
+def sort_it(lst):
+    Heap(lst).heap_sort()
+    return lst
+
 def main():
     test = Heap([1, 2, 3, 4, 5, 6])
     test.heap_sort()
