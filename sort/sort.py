@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 import random
-from quick_sort import *
+from count_sort import *
 import time
 
 def init(n):
